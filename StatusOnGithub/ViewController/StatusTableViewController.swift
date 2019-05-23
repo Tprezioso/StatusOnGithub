@@ -11,7 +11,8 @@ import UIKit
 class StatusTableViewController: UITableViewController {
 
     let arrayForCell = [
-        "Tom","Nick","Alyssa","Anthony","Daniel","Nikki"
+        ["Tom","Nick","Alyssa","Anthony","Daniel","Nikki"],
+        ["Dick", "Larry", "Steve"]
     ]
     
     override func viewDidLoad() {
@@ -21,17 +22,31 @@ class StatusTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "Header"
+        label.backgroundColor = UIColor.lightGray
+       
+        return label
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayForCell.count
+            return arrayForCell.count
+
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "statusCell", for: indexPath)
 
         // Configure the cell...
-        cell.textLabel?.text = self.arrayForCell[indexPath.row]
 
+            cell.textLabel?.text = self.arrayForCell[indexPath.section][indexPath.row]
+        
         return cell
     }
 
