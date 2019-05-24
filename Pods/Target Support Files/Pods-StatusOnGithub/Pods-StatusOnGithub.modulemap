@@ -1,0 +1,6 @@
+framework module Pods_StatusOnGithub {
+  umbrella header "Pods-StatusOnGithub-umbrella.h"
+
+  export *
+  module * { export * }
+}
