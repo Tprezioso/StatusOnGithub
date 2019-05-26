@@ -13,6 +13,7 @@
 		9F423F2E2291A7D600E2B691 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F423F2D2291A7D600E2B691 /* Assets.xcassets */; };
 		9F423F312291A7D600E2B691 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F423F2F2291A7D600E2B691 /* LaunchScreen.storyboard */; };
 		9F423F392291A81200E2B691 /* StatusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F423F382291A81200E2B691 /* StatusTableViewController.swift */; };
+		9FEDF9EC229B2024005A6DC8 /* APICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEDF9EB229B2024005A6DC8 /* APICalls.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		9F423F302291A7D600E2B691 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F423F322291A7D600E2B691 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F423F382291A81200E2B691 /* StatusTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewController.swift; sourceTree = "<group>"; };
+		9FEDF9EB229B2024005A6DC8 /* APICalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalls.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +56,6 @@
 				1D7B6556C954D22383E528B9 /* Pods-StatusOnGithub.debug.xcconfig */,
 				599B062B492F571439B3E855 /* Pods-StatusOnGithub.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -80,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				9F423F262291A7D500E2B691 /* AppDelegate.swift */,
+				9FEDF9ED229B202B005A6DC8 /* Model */,
 				9F423F3B2291A87A00E2B691 /* ViewController */,
 				9F423F3A2291A85600E2B691 /* View */,
 				9F423F322291A7D600E2B691 /* Info.plist */,
@@ -103,6 +105,14 @@
 				9F423F382291A81200E2B691 /* StatusTableViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9FEDF9ED229B202B005A6DC8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9FEDF9EB229B2024005A6DC8 /* APICalls.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +239,7 @@
 			files = (
 				9F423F392291A81200E2B691 /* StatusTableViewController.swift in Sources */,
 				9F423F272291A7D500E2B691 /* AppDelegate.swift in Sources */,
+				9FEDF9EC229B2024005A6DC8 /* APICalls.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
