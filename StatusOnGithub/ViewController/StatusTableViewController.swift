@@ -15,10 +15,13 @@ class StatusTableViewController: UITableViewController {
         ["Dick", "Larry", "Steve"]
     ]
     
+    var apiCall = APICall()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = true
-
+        apiCall.summaryStatus()
     }
 
     // MARK: - Table view data source

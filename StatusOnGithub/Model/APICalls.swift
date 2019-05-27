@@ -11,5 +11,15 @@ import Alamofire
 import SwiftyJSON
 
 class APICall {
-    <#code#>
+    let statusSummaryForGitHub = "https://kctbh9vrtdwd.statuspage.io/api/v2/summary.json"
+    
+    func summaryStatus() {
+        Alamofire.request(statusSummaryForGitHub, method: .get).responseJSON { (response) in
+            if response.result.isSuccess {
+                print(response.result.value)
+            }
+        }
+
+    }
+    
 }
