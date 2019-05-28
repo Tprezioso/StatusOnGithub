@@ -18,9 +18,15 @@ class APICall {
         Alamofire.request(statusSummaryForGitHub, method: .get).responseJSON { (response) in
             if response.result.isSuccess {
                 let result = response.result.value!
+//                print(result)
+                let statusData = result as! [String: AnyObject]
+//               print(statusData)
                 
-                let thing = result as! [String: Any]
-                print(thing["components"]!)
+                if let componentsData = statusData["components"] as? [[String : Any]] {
+                    print(componentsData[0]["name"])
+
+                }
+                
                 
             }
         }
