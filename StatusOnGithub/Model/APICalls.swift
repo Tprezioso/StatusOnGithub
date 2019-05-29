@@ -12,19 +12,20 @@ import SwiftyJSON
 
 class APICall {
     let statusSummaryForGitHub = "https://kctbh9vrtdwd.statuspage.io/api/v2/summary.json"
-    typealias WebServiceResponse = ([[String: String]]?) -> Void
+    typealias WebServiceResponse = ([[String: Any]]?) -> Void
 
-    func summaryStatus() {
+    func summaryStatus(completion: @escaping WebServiceResponse) {
         Alamofire.request(statusSummaryForGitHub, method: .get).responseJSON { (response) in
             if response.result.isSuccess {
-                let result = response.result.value!
+//                let result = response.result.value!
 //                print(result)
-                let statusData = result as! [String: AnyObject]
+                let statusData = response.result.value! as! [String: AnyObject]
 //               print(statusData)
                 
                 if let componentsData = statusData["components"] as? [[String : Any]] {
-                    print(componentsData[0]["name"])
-
+                    completion(componentsData)
+                    print(componentsData[1]["name"]!)
+                    print(componentsData[1]["status"]!)
                 }
                 
                 

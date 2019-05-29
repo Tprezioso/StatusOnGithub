@@ -18,7 +18,9 @@ class StatusTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        APICall().summaryStatus()
+        APICall().summaryStatus { (json) in
+            print(json!)
+        }
     }
 
     // MARK: - Table view data source
