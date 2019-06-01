@@ -26,9 +26,11 @@ class StatusTableViewController: UITableViewController {
             APICall().summaryStatus { (json) in
                 self.apiJSON = json as! [[String : Any]]
                 for item in self.apiJSON {
-                    self.showArray.append(item["name"] as! String)
+                    if item["name"] as! String != "Visit www.githubstatus.com for more information"{
+                        self.showArray.append(item["name"] as! String)
+                    }
                 }
-                
+                print(self.showArray)
                 self.tableView.reloadData()
 
             }
@@ -39,14 +41,14 @@ class StatusTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
-        label.text = "Header"
+        label.text = "All Systems Operational"
         label.backgroundColor = UIColor.lightGray
        
         return label
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 7
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
