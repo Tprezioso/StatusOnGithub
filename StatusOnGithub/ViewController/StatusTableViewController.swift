@@ -15,11 +15,23 @@ class StatusTableViewController: UITableViewController {
         ["Dick", "Larry", "Steve"]
     ]
     
+    var apiJSON = [[String : Any]]()
+    var showArray = [String]()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        APICall().summaryStatus { (json) in
-            print(json!)
+        DispatchQueue.main.async {
+            APICall().summaryStatus { (json) in
+                self.apiJSON = json as! [[String : Any]]
+                for item in self.apiJSON {
+                    self.showArray.append(item["name"] as! String)
+                }
+                
+                self.tableView.reloadData()
+
+            }
         }
     }
 
@@ -34,11 +46,11 @@ class StatusTableViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 7
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return arrayForCell.count
+            return self.showArray.count
 
     }
 
@@ -46,9 +58,8 @@ class StatusTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "statusCell", for: indexPath)
 
         // Configure the cell...
+        cell.textLabel?.text = showArray[indexPath.row]
 
-            cell.textLabel?.text = self.arrayForCell[indexPath.section][indexPath.row]
-        
         return cell
     }
 

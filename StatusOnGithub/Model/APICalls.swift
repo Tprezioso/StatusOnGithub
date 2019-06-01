@@ -17,10 +17,7 @@ class APICall {
     func summaryStatus(completion: @escaping WebServiceResponse) {
         Alamofire.request(statusSummaryForGitHub, method: .get).responseJSON { (response) in
             if response.result.isSuccess {
-//                let result = response.result.value!
-//                print(result)
                 let statusData = response.result.value! as! [String: AnyObject]
-//               print(statusData)
                 
                 if let componentsData = statusData["components"] as? [[String : Any]] {
                     completion(componentsData)
