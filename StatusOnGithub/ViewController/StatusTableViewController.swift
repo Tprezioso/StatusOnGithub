@@ -10,10 +10,10 @@ import UIKit
 
 class StatusTableViewController: UITableViewController {
 
-//    let arrayForCell = [
-//        ["Tom","Nick","Alyssa","Anthony","Daniel","Nikki"],
+    let arrayForCell = [
+        "Tom","Nick","Alyssa","Anthony","Daniel","Nikki"
 //        ["Dick", "Larry", "Steve"]
-//    ]
+    ]
     var apiJSON = [[String : Any]]()
     var showArray = [String]()
     
@@ -63,11 +63,11 @@ class StatusTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "statusCell", for: indexPath)
-
+        var cell = tableView.dequeueReusableCell(withIdentifier: "statusCell", for: indexPath)
+        cell = UITableViewCell(style: .value1, reuseIdentifier: "statusCell")
         // Configure the cell...
         cell.textLabel?.text = showArray[indexPath.row]
-
+        cell.detailTextLabel?.text = self.arrayForCell[indexPath.row]
         return cell
     }
 
