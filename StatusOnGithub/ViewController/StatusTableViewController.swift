@@ -10,21 +10,26 @@ import UIKit
 
 class StatusTableViewController: UITableViewController {
 
-    let arrayForCell = [
-        ["Tom","Nick","Alyssa","Anthony","Daniel","Nikki"],
-        ["Dick", "Larry", "Steve"]
-    ]
-    
+//    let arrayForCell = [
+//        ["Tom","Nick","Alyssa","Anthony","Daniel","Nikki"],
+//        ["Dick", "Larry", "Steve"]
+//    ]
     var apiJSON = [[String : Any]]()
     var showArray = [String]()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        apiCallForData()
+        
+    }
+    
+    // MARK: - APICall
+    
+    func apiCallForData() {
         DispatchQueue.main.async {
             APICall().summaryStatus { (json) in
-                self.apiJSON = json as! [[String : Any]]
+                self.apiJSON = json! as [[String : Any]]
                 for item in self.apiJSON {
                     if item["name"] as! String != "Visit www.githubstatus.com for more information"{
                         self.showArray.append(item["name"] as! String)
@@ -32,9 +37,10 @@ class StatusTableViewController: UITableViewController {
                 }
                 print(self.showArray)
                 self.tableView.reloadData()
-
+                
             }
         }
+
     }
 
     // MARK: - Table view data source
