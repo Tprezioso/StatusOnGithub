@@ -15,7 +15,8 @@ class StatusTableViewController: UITableViewController {
 //        ["Dick", "Larry", "Steve"]
     ]
     var apiJSON = [[String : Any]]()
-    var showArray = [String]()
+    var componentsArray = [String]()
+    var componentsStatus = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,12 +31,14 @@ class StatusTableViewController: UITableViewController {
         DispatchQueue.main.async {
             APICall().summaryStatus { (json) in
                 self.apiJSON = json! as [[String : Any]]
-                for item in self.apiJSON {
-                    if item["name"] as! String != "Visit www.githubstatus.com for more information"{
-                        self.showArray.append(item["name"] as! String)
+                for components in self.apiJSON {
+                    if components["name"] as! String != "Visit www.githubstatus.com for more information"{
+                        self.componentsArray.append(components["name"] as! String)
+                        self.componentsStatus.append(components["status"] as! String)
+
                     }
                 }
-                print(self.showArray)
+                print(self.componentsArray)
                 self.tableView.reloadData()
                 
             }
@@ -58,7 +61,7 @@ class StatusTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return self.showArray.count
+            return self.componentsArray.count
 
     }
 
@@ -66,8 +69,9 @@ class StatusTableViewController: UITableViewController {
         var cell = tableView.dequeueReusableCell(withIdentifier: "statusCell", for: indexPath)
         cell = UITableViewCell(style: .value1, reuseIdentifier: "statusCell")
         // Configure the cell...
-        cell.textLabel?.text = showArray[indexPath.row]
-        cell.detailTextLabel?.text = self.arrayForCell[indexPath.row]
+
+        cell.textLabel?.text = componentsArray[indexPath.row]
+        cell.detailTextLabel?.text = self.componentsStatus[indexPath.row]
         return cell
     }
 
