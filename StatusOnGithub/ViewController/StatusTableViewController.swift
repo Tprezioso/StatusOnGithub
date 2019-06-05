@@ -10,6 +10,15 @@ import UIKit
 
 class StatusTableViewController: UITableViewController {
 
+//    struct Category {
+//        let name : String
+////        var items : [[String:Any]]
+//    }
+//    var sectionNames = [Category]()
+//    sectionNames = [Category(name: ), Category(name: )]
+    let sections = ["All Systems Operational", "Past Incidents" ]
+    
+    
     let arrayForCell = [
         "Tom","Nick","Alyssa","Anthony","Daniel","Nikki"
 //        ["Dick", "Larry", "Steve"]
@@ -47,17 +56,12 @@ class StatusTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel()
-        label.text = "All Systems Operational"
-        label.backgroundColor = UIColor.lightGray
-       
-        return label
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.sections[section]
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
