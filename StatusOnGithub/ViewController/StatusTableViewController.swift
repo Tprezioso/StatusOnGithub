@@ -23,6 +23,9 @@ class StatusTableViewController: UITableViewController {
         "Tom","Nick","Alyssa","Anthony","Daniel","Nikki"
 //        ["Dick", "Larry", "Steve"]
     ]
+    
+    var displayArray = [[String]]()
+    
     var apiJSON = [[String : Any]]()
     var componentsArray = [String]()
     var componentsStatus = [String]()
@@ -44,10 +47,11 @@ class StatusTableViewController: UITableViewController {
                     if components["name"] as! String != "Visit www.githubstatus.com for more information"{
                         self.componentsArray.append(components["name"] as! String)
                         self.componentsStatus.append(components["status"] as! String)
-
+                        
                     }
                 }
-                print(self.componentsArray)
+                print(">>>>>>>>>>>>>>>> \(self.componentsArray)")
+//                self.componentsArray.append(arrayForCell)
                 self.tableView.reloadData()
                 
             }
@@ -74,7 +78,10 @@ class StatusTableViewController: UITableViewController {
         cell = UITableViewCell(style: .value1, reuseIdentifier: "statusCell")
         // Configure the cell...
 
-        cell.textLabel?.text = componentsArray[indexPath.row]
+        displayArray.append(componentsArray)
+        displayArray.append(arrayForCell)
+        //componentsArray[indexPath.row]
+        cell.textLabel?.text = displayArray[indexPath.section][indexPath.row]
         cell.detailTextLabel?.text = self.componentsStatus[indexPath.row]
         return cell
     }
