@@ -30,5 +30,21 @@ class APICall {
         }
 
     }
-    
+   
+    func pastIncidents(completion: @escaping WebServiceResponse) {
+        Alamofire.request(statusSummaryForGitHub, method: .get).responseJSON { (response) in
+            if response.result.isSuccess {
+                let statusData = response.result.value! as! [String: AnyObject]
+                print(statusData["incidents"]!)
+                if let componentsData = statusData["incidents"] as? [[String : Any]] {
+                    completion(componentsData)
+//                    print(componentsData)
+                }
+                
+                
+            }
+        }
+        
+    }
+
 }

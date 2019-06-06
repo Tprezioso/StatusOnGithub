@@ -10,18 +10,9 @@ import UIKit
 
 class StatusTableViewController: UITableViewController {
 
-//    struct Category {
-//        let name : String
-////        var items : [[String:Any]]
-//    }
-//    var sectionNames = [Category]()
-//    sectionNames = [Category(name: ), Category(name: )]
     let sections = ["All Systems Operational", "Past Incidents" ]
-    
-    
     let arrayForCell = [
         "Tom","Nick","Alyssa","Anthony","Daniel","Nikki"
-//        ["Dick", "Larry", "Steve"]
     ]
     
     var displayArray = [[String]]()
@@ -34,7 +25,9 @@ class StatusTableViewController: UITableViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = true
         apiCallForData()
-        
+        APICall().pastIncidents { (json) in
+            print(json!)
+        }
     }
     
     // MARK: - APICall
@@ -50,8 +43,7 @@ class StatusTableViewController: UITableViewController {
                         
                     }
                 }
-                print(">>>>>>>>>>>>>>>> \(self.componentsArray)")
-//                self.componentsArray.append(arrayForCell)
+//                print(">>>>>>>>>>>>>>>> \(self.componentsArray)")
                 self.tableView.reloadData()
                 
             }
